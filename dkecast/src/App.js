@@ -47,7 +47,7 @@ function GetWeather() {
 
        
      })()
- })
+ }, [])
 
   if(!state) {
     return(
