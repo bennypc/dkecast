@@ -102,12 +102,22 @@ function GetWeather() {
   )
 }
 
+function Footer() {
+  return (
+  <div className='fixed bottom-0 flex text-center w-full justify-center'>
+    <p className='text-gray-400 text-lg bottom'>built by pledge brother benny at 4am cus i got zero life</p>
+  </div>
+  )
+}
+
   
 function App() {
   return (
     <div>
       <Logo />
       <GetWeather/>
+      
+      <Footer/>
     </div>
   );
 }
