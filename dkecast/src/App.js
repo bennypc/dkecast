@@ -1,6 +1,21 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 
+function Logo() {
+  return(
+    <div className='flex text-center w-full justify-center'>
+      <img 
+      src={require('./images/dkecast.gif')}
+      alt="logo" />
+    </div>
+  )
+}
+
+function getDirection(angle) {
+  var directions = ['North', 'North-East', 'East', 'South-East', 'South', 'South-West', 'West', 'North-West'];
+  var index = Math.round(((angle %= 360) < 0 ? angle + 360 : angle) / 45) % 8;
+  return directions[index];
+}
 
 
 function GetWeather() {
@@ -11,6 +26,8 @@ function GetWeather() {
     feelsLike: '',
     humidity: '',
     description: '',
+    wind_speed: '',
+    wind_direction: '',
     name: '',
     country: ''
   });
@@ -26,6 +43,7 @@ function GetWeather() {
         const cityData = await response.json();
     
         const data = cityData.main;
+        const wind = cityData.wind;
         const status = cityData.weather[0];
         const location = cityData.sys;
 
@@ -37,6 +55,8 @@ function GetWeather() {
           feelsLike: Math.round(data.feels_like - 273),
           humidity: data.humidity,
           description: status.description,
+          wind: wind.speed,
+          wind_direction: getDirection(wind.deg),
           name: cityData.name,
           country: location.country
           })
@@ -57,19 +77,25 @@ function GetWeather() {
   return(
     
     <div>
-        <div className="data_container">
+        <div className="data_container flex text-center w-full justify-center">
           <p className="temp"></p>
           <div className="data text-white">
-            <p className="temp">{"city: " + JSON.stringify(state.name)}</p>
-            <p className="temp">{"country: " + JSON.stringify(state.country)}</p>
             <br></br>
-            <p className="temp">{"temp: " + JSON.stringify(state.temp) + " celcius"}</p>
-            <p className="feels_like">{"feels like " + JSON.stringify(state.feelsLike) + " celcius"}</p>
-            <p className="temp_min">{"min: " + JSON.stringify(state.temp_min) + " celcius"}</p>
-            <p className="temp_max">{"max: " + JSON.stringify(state.temp_max) + " celcius"}</p>
-            <p className="humidity">{"humidity: " + JSON.stringify(state.humidity) + "%"}</p>
+            <p>better than the fucking iphone weather app</p>
             <br></br>
-            <p className="humidity">{"conditions: " + JSON.stringify(state.description)}</p>
+            <p className="temp text-4xl">{"TEMPERATURE: " + JSON.stringify(state.temp) + " DEGREES"}</p>
+            <br></br>
+            <p className="feels_like temp text-2xl">{"FEELS LIKE " + JSON.stringify(state.feelsLike) + " DEGREES"}</p>
+            <br></br>
+            <p className="temp_min temp text-2xl">{"MINIMUM: " + JSON.stringify(state.temp_min) + " DEGREES"}</p>
+            <p className="temp_max temp text-2xl">{"MAXMIMUM: " + JSON.stringify(state.temp_max) + " DEGREES"}</p>
+            <br></br>
+            <p className="wind  text-2xl">{"WIND SPEED: " + JSON.stringify(state.wind) + "M/S"}</p>
+            <p className="wind_direction text-2xl">{"WIND DIRECTION: " + JSON.stringify(state.wind_direction).replace(/\"/g, "").toUpperCase()}</p>
+            <br></br>
+            <p className="humidity text-2xl">{"HUMIDITY: " + JSON.stringify(state.humidity) + "%"}</p>
+            <br></br>
+            <p className="conditions">{"CONDITIONS: " + JSON.stringify(state.description.replace(/\"/g, "")).toUpperCase()}</p>
         </div>
       </div>
     </div>
@@ -80,6 +106,7 @@ function GetWeather() {
 function App() {
   return (
     <div>
+      <Logo />
       <GetWeather/>
     </div>
   );
