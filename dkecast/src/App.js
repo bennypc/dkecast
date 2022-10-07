@@ -59,7 +59,7 @@ function GetWeather() {
     <div>
         <div className="data_container">
           <p className="temp"></p>
-          <div className="data">
+          <div className="data text-white">
             <p className="temp">{"city: " + JSON.stringify(state.name)}</p>
             <p className="temp">{"country: " + JSON.stringify(state.country)}</p>
             <br></br>
