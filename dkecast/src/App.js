@@ -95,7 +95,7 @@ function GetWeather() {
             <br></br>
             <p className="humidity text-2xl">{"HUMIDITY: " + JSON.stringify(state.humidity) + "%"}</p>
             <br></br>
-            <p className="conditions">{"CONDITIONS: " + JSON.stringify(state.description.replace(/\"/g, "")).toUpperCase()}</p>
+            <p className="conditions">{"CONDITIONS: " + JSON.stringify(state.description).replace(/\"/g, "").toUpperCase()}</p>
         </div>
       </div>
     </div>
