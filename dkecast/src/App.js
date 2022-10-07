@@ -91,11 +91,11 @@ function GetWeather() {
             <p className="temp_max temp text-2xl">{"MAXMIMUM: " + JSON.stringify(state.temp_max) + " DEGREES"}</p>
             <br></br>
             <p className="wind  text-2xl">{"WIND SPEED: " + JSON.stringify(state.wind) + "M/S"}</p>
-            <p className="wind_direction text-2xl">{"WIND DIRECTION: " + JSON.stringify(state.wind_direction).replace(/\"/g, "").toUpperCase()}</p>
+            <p className="wind_direction text-2xl">{"WIND DIRECTION: " + JSON.stringify(state.wind_direction).replace(/"/g, "").toUpperCase()}</p>
             <br></br>
             <p className="humidity text-2xl">{"HUMIDITY: " + JSON.stringify(state.humidity) + "%"}</p>
             <br></br>
-            <p className="conditions">{"CONDITIONS: " + JSON.stringify(state.description).replace(/\"/g, "").toUpperCase()}</p>
+            <p className="conditions">{"CONDITIONS: " + JSON.stringify(state.description).replace(/"/g, "").toUpperCase()}</p>
         </div>
       </div>
     </div>
